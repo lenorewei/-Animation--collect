@@ -14,8 +14,13 @@ gulp.task('less',['clean'],function(){
       .pipe(gulp.dest('css'))
       .pipe(livereload());
 });
+gulp.task('html', function() {
+    return gulp.src('*.html')
+        .pipe(gulp.dest(''))
+        .pipe(livereload())
+});
 gulp.task('default', ['clean','less']);
 gulp.task('watch', function () {
     livereload.listen();
-    gulp.watch('css/less/*.less', ['clean','less']);
+    gulp.watch(['css/less/*.less','index.html'], ['less','html']);
 });

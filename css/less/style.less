@@ -1,7 +1,11 @@
+//页面布局
+@background-color: #2B3134;
+@orange: #FF6700;
+@transparentorange: rgba(255, 103, 0, 0.5);
 body,
 html {
   padding: 0;
-  background-color: #2B3134;
+  background-color: @background-color;
 }
 .contain{
   width: 800px;
@@ -12,13 +16,18 @@ html {
   width: 100px;
   height: 100px;
   display: inline-block;
+  //下面两个为了处理在inlin-block元素下使用overflow：hidden出现的错位问题；
+  vertical-align: top;
+  //overflow: auto;
 }
+//两个圆圈动画css
 @circle-width : 50px;
 @small-circle-width : 10px;
+@move-circle-width : 16px;
 .css-circle-animation {
   width: @circle-width;
   height: @circle-width;
-  background-color: rgba(255, 103, 0, 0.5);
+  background-color: @transparentorange;
   border-radius: 50%;
   position: relative;
   left: @circle-width/2;
@@ -27,16 +36,17 @@ html {
   z-index:1;
 }
 .css-circle-animation.black{
-  background-color: #2B3134;
+  background-color: @background-color;
 }
 .css-circle-animation:before{
   content: "";
-  width: @circle-width/2;
+  width: @move-circle-width;
   height: @circle-width/2;
-  background-color: #FF6700;
+  left: @circle-width/2 - @move-circle-width/2;
+  background-color: @orange;
   position: absolute;
-  transform-origin: @circle-width/2 @circle-width/2;
-  animation: cssCircleAnimation 1s infinite;
+  transform-origin: @move-circle-width/2 @circle-width/2;
+  animation: Spin 1s infinite;
 }
 .css-circle-animation:after{
   position: absolute;
@@ -49,11 +59,89 @@ html {
   content: "";
 }
 
-@keyframes cssCircleAnimation{
+@keyframes Spin{
   from{
     transform: rotate(0deg);
   }
   to{
     transform: rotate(360deg);
   }
+}
+//长方形动画1
+.css-move-rectangle1 {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  top: 25px;
+  left: 25px;
+}
+.css-move-rectangle1 span{
+  width: 5px;
+  height: 20px;
+  background-color: @orange;
+  display: inline-block;
+  position: relative;
+  top: 15px;
+  transform-origin: top;
+}
+.css-move-rectangle1 .rectangle-frist{
+  margin-left: 12px;
+  animation: rectangleFrist 0.5s 0.2s infinite linear alternate;
+}
+.css-move-rectangle1 .rectangle-second{
+  animation: rectangleFrist 0.5s infinite linear alternate;
+}
+.css-move-rectangle1 .rectangle-third{
+  animation: rectangleFrist 0.5s 0.4s infinite linear alternate;
+}
+@keyframes rectangleFrist{
+  from{
+    transform: scaleY(1);
+  }
+  to{
+    transform: scaleY(0.2);
+  }
+}
+//小圆绕大圆
+.css-circle-around {
+  width: @circle-width;
+  height: @circle-width;
+  border: 2px solid @transparentorange;
+  border-radius: 50%;
+  position: relative;
+  left: @circle-width/2;
+  top: @circle-width/2;
+  box-sizing: border-box;
+}
+.css-circle-around::before{
+  width: @circle-width/4;
+  height: @circle-width/4;
+  border-radius: 50%;
+  position: absolute;
+  content: "";
+  background-color: @orange;
+  animation: Spin 1s linear infinite;
+  transform-origin: @circle-width/2-2px @circle-width/2-2px;
+}
+//spin-border利用border制作旋转的扇形
+.border-spin1{
+  border: 25px solid;
+  border-color: @orange transparent;
+  border-radius: 50%;
+  margin: 25px;
+  animation: Spin 1s linear infinite;
+}
+.border-spin2{
+  border: 25px  double;
+  border-color: @orange transparent;
+  border-radius: 50%;
+  margin: 25px;
+  animation: Spin 1s linear infinite;
+}
+.border-spin3{
+  border: 25px  double;
+  border-color: @transparentorange @transparentorange @orange ;
+  border-radius: 50%;
+  margin: 25px;
+  animation: Spin 1s linear infinite;
 }

@@ -12,6 +12,7 @@ html {
   width: 100px;
   height: 100px;
   display: inline-block;
+  vertical-align: top;
 }
 .css-circle-animation {
   width: 50px;
@@ -29,14 +30,15 @@ html {
 }
 .css-circle-animation:before {
   content: "";
-  width: 25px;
+  width: 16px;
   height: 25px;
+  left: 17px;
   background-color: #FF6700;
   position: absolute;
-  -webkit-transform-origin: 25px 25px;
-          transform-origin: 25px 25px;
-  -webkit-animation: cssCircleAnimation 1s infinite;
-          animation: cssCircleAnimation 1s infinite;
+  -webkit-transform-origin: 8px 25px;
+          transform-origin: 8px 25px;
+  -webkit-animation: Spin 1s infinite;
+          animation: Spin 1s infinite;
 }
 .css-circle-animation:after {
   position: absolute;
@@ -48,7 +50,7 @@ html {
   left: 5px;
   content: "";
 }
-@-webkit-keyframes cssCircleAnimation {
+@-webkit-keyframes Spin {
   from {
     -webkit-transform: rotate(0deg);
             transform: rotate(0deg);
@@ -58,7 +60,7 @@ html {
             transform: rotate(360deg);
   }
 }
-@keyframes cssCircleAnimation {
+@keyframes Spin {
   from {
     -webkit-transform: rotate(0deg);
             transform: rotate(0deg);
@@ -67,4 +69,100 @@ html {
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg);
   }
+}
+.css-move-rectangle1 {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  top: 25px;
+  left: 25px;
+}
+.css-move-rectangle1 span {
+  width: 5px;
+  height: 20px;
+  background-color: #FF6700;
+  display: inline-block;
+  position: relative;
+  top: 15px;
+  -webkit-transform-origin: top;
+          transform-origin: top;
+}
+.css-move-rectangle1 .rectangle-frist {
+  margin-left: 12px;
+  -webkit-animation: rectangleFrist 0.5s 0.2s infinite linear alternate;
+          animation: rectangleFrist 0.5s 0.2s infinite linear alternate;
+}
+.css-move-rectangle1 .rectangle-second {
+  -webkit-animation: rectangleFrist 0.5s infinite linear alternate;
+          animation: rectangleFrist 0.5s infinite linear alternate;
+}
+.css-move-rectangle1 .rectangle-third {
+  -webkit-animation: rectangleFrist 0.5s 0.4s infinite linear alternate;
+          animation: rectangleFrist 0.5s 0.4s infinite linear alternate;
+}
+@-webkit-keyframes rectangleFrist {
+  from {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+  to {
+    -webkit-transform: scaleY(0.2);
+            transform: scaleY(0.2);
+  }
+}
+@keyframes rectangleFrist {
+  from {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+  to {
+    -webkit-transform: scaleY(0.2);
+            transform: scaleY(0.2);
+  }
+}
+.css-circle-around {
+  width: 50px;
+  height: 50px;
+  border: 2px solid rgba(255, 103, 0, 0.5);
+  border-radius: 50%;
+  position: relative;
+  left: 25px;
+  top: 25px;
+  box-sizing: border-box;
+}
+.css-circle-around::before {
+  width: 12.5px;
+  height: 12.5px;
+  border-radius: 50%;
+  position: absolute;
+  content: "";
+  background-color: #FF6700;
+  -webkit-animation: Spin 1s linear infinite;
+          animation: Spin 1s linear infinite;
+  -webkit-transform-origin: 23px 23px;
+          transform-origin: 23px 23px;
+}
+.border-spin1 {
+  border: 25px solid;
+  border-color: #FF6700 transparent;
+  border-radius: 50%;
+  margin: 25px;
+  -webkit-animation: Spin 1s linear infinite;
+          animation: Spin 1s linear infinite;
+}
+.border-spin2 {
+  border: 25px  double;
+  border-color: #FF6700 transparent;
+  border-radius: 50%;
+  margin: 25px;
+  -webkit-animation: Spin 1s linear infinite;
+          animation: Spin 1s linear infinite;
+}
+.border-spin3 {
+  border: 25px  double;
+  border-color: rgba(255, 103, 0, 0.5) rgba(255, 103, 0, 0.5) #FF6700;
+  border-radius: 50%;
+  margin: 25px;
+  -webkit-animation: Spin 1s linear infinite;
+          animation: Spin 1s linear infinite;
 }
