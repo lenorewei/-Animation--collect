@@ -1,0 +1,59 @@
+body,
+html {
+  padding: 0;
+  background-color: #2B3134;
+}
+.contain{
+  width: 800px;
+  margin: 100px auto;
+  height: 300px;
+}
+.clip{
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+}
+@circle-width : 50px;
+@small-circle-width : 10px;
+.css-circle-animation {
+  width: @circle-width;
+  height: @circle-width;
+  background-color: rgba(255, 103, 0, 0.5);
+  border-radius: 50%;
+  position: relative;
+  left: @circle-width/2;
+  top: @circle-width/2;
+  overflow: hidden;
+  z-index:1;
+}
+.css-circle-animation.black{
+  background-color: #2B3134;
+}
+.css-circle-animation:before{
+  content: "";
+  width: @circle-width/2;
+  height: @circle-width/2;
+  background-color: #FF6700;
+  position: absolute;
+  transform-origin: @circle-width/2 @circle-width/2;
+  animation: cssCircleAnimation 1s infinite;
+}
+.css-circle-animation:after{
+  position: absolute;
+  border-radius: 50%;
+  width: @circle-width - @small-circle-width;
+  height: @circle-width - @small-circle-width;
+  background-color: #2B3134;
+  top: @small-circle-width/2;
+  left: @small-circle-width/2;
+  content: "";
+}
+
+@keyframes cssCircleAnimation{
+  from{
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  }
+}
