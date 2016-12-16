@@ -7,12 +7,27 @@ html {
   width: 800px;
   margin: 100px auto;
   height: 300px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 .clip {
   width: 100px;
   height: 100px;
-  display: inline-block;
-  vertical-align: top;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  box-pack: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+.clip.big {
+  width: 200px;
+  height: 200px;
 }
 .css-circle-animation {
   width: 50px;
@@ -20,8 +35,6 @@ html {
   background-color: rgba(255, 103, 0, 0.5);
   border-radius: 50%;
   position: relative;
-  left: 25px;
-  top: 25px;
   overflow: hidden;
   z-index: 1;
 }
@@ -35,10 +48,8 @@ html {
   left: 17px;
   background-color: #FF6700;
   position: absolute;
-  -webkit-transform-origin: 8px 25px;
-          transform-origin: 8px 25px;
-  -webkit-animation: Spin 1s infinite;
-          animation: Spin 1s infinite;
+  transform-origin: 8px 25px;
+  animation: Spin 1s infinite;
 }
 .css-circle-animation:after {
   position: absolute;
@@ -50,32 +61,20 @@ html {
   left: 5px;
   content: "";
 }
-@-webkit-keyframes Spin {
-  from {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
-}
 @keyframes Spin {
   from {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   to {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 .css-move-rectangle1 {
   width: 50px;
   height: 50px;
   position: relative;
-  top: 25px;
-  left: 25px;
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 .css-move-rectangle1 span {
   width: 5px;
@@ -83,41 +82,23 @@ html {
   background-color: #FF6700;
   display: inline-block;
   position: relative;
-  top: 15px;
-  -webkit-transform-origin: top;
-          transform-origin: top;
+  transform-origin: top;
 }
 .css-move-rectangle1 .rectangle-frist {
-  margin-left: 12px;
-  -webkit-animation: rectangleFrist 0.5s 0.2s infinite linear alternate;
-          animation: rectangleFrist 0.5s 0.2s infinite linear alternate;
+  animation: rectangleFrist 0.5s 0.2s infinite linear alternate;
 }
 .css-move-rectangle1 .rectangle-second {
-  -webkit-animation: rectangleFrist 0.5s infinite linear alternate;
-          animation: rectangleFrist 0.5s infinite linear alternate;
+  animation: rectangleFrist 0.5s infinite linear alternate;
 }
 .css-move-rectangle1 .rectangle-third {
-  -webkit-animation: rectangleFrist 0.5s 0.4s infinite linear alternate;
-          animation: rectangleFrist 0.5s 0.4s infinite linear alternate;
-}
-@-webkit-keyframes rectangleFrist {
-  from {
-    -webkit-transform: scaleY(1);
-            transform: scaleY(1);
-  }
-  to {
-    -webkit-transform: scaleY(0.2);
-            transform: scaleY(0.2);
-  }
+  animation: rectangleFrist 0.5s 0.4s infinite linear alternate;
 }
 @keyframes rectangleFrist {
   from {
-    -webkit-transform: scaleY(1);
-            transform: scaleY(1);
+    transform: scaleY(1);
   }
   to {
-    -webkit-transform: scaleY(0.2);
-            transform: scaleY(0.2);
+    transform: scaleY(0.2);
   }
 }
 .css-circle-around {
@@ -126,8 +107,6 @@ html {
   border: 2px solid rgba(255, 103, 0, 0.5);
   border-radius: 50%;
   position: relative;
-  left: 25px;
-  top: 25px;
   box-sizing: border-box;
 }
 .css-circle-around::before {
@@ -137,32 +116,120 @@ html {
   position: absolute;
   content: "";
   background-color: #FF6700;
-  -webkit-animation: Spin 1s linear infinite;
-          animation: Spin 1s linear infinite;
-  -webkit-transform-origin: 23px 23px;
-          transform-origin: 23px 23px;
+  animation: Spin 1s linear infinite;
+  transform-origin: 23px 23px;
 }
 .border-spin1 {
   border: 25px solid;
   border-color: #FF6700 transparent;
   border-radius: 50%;
-  margin: 25px;
-  -webkit-animation: Spin 1s linear infinite;
-          animation: Spin 1s linear infinite;
+  animation: Spin 1s linear infinite;
 }
 .border-spin2 {
-  border: 25px  double;
+  border: 25px double;
   border-color: #FF6700 transparent;
   border-radius: 50%;
-  margin: 25px;
-  -webkit-animation: Spin 1s linear infinite;
-          animation: Spin 1s linear infinite;
+  animation: Spin 1s linear infinite;
 }
 .border-spin3 {
-  border: 25px  double;
+  border: 25px double;
   border-color: rgba(255, 103, 0, 0.5) rgba(255, 103, 0, 0.5) #FF6700;
   border-radius: 50%;
-  margin: 25px;
-  -webkit-animation: Spin 1s linear infinite;
-          animation: Spin 1s linear infinite;
+  animation: Spin 1s linear infinite;
+}
+.over-watch {
+  position: relative;
+}
+.over-watch .inner-circle {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: rgba(255, 103, 0, 0.5);
+  z-index: 0;
+  left: -18px;
+  top: -17px;
+  animation-timing-function: linear;
+}
+.over-watch .inner-circle::after {
+  width: 95px;
+  height: 95px;
+  top: 2.5px;
+  left: 2.5px;
+}
+.over-watch .inner-circle::before {
+  width: 16px;
+  height: 50px;
+  left: 42px;
+  transform-origin: 8px 50px;
+}
+.over-watch .hexagon-row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+.over-watch .hexagon-row .hexagon {
+  position: relative;
+  width: 17.32px;
+  height: 10px;
+  border-radius: 1px;
+  background: #FF6700;
+  display: inline-block;
+  margin: 6px 2px;
+  transform: scale(0);
+  opacity: 0;
+}
+.over-watch .hexagon-row .hexagon::before,
+.over-watch .hexagon-row .hexagon::after {
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+  background: inherit;
+  content: '';
+}
+.over-watch .hexagon-row .hexagon::before {
+  transform: rotate(60deg);
+}
+.over-watch .hexagon-row .hexagon::after {
+  transform: rotate(-60deg);
+}
+.over-watch .hexagon-row .hexagon1 {
+  animation: hexagonShow 1.5s infinite alternate;
+  animation-delay: 0.3s;
+}
+.over-watch .hexagon-row .hexagon2 {
+  animation: hexagonShow 1.5s infinite alternate;
+  animation-delay: 0.6s;
+}
+.over-watch .hexagon-row .hexagon3 {
+  animation: hexagonShow 1.5s infinite alternate;
+  animation-delay: 0.9s;
+}
+.over-watch .hexagon-row .hexagon4 {
+  animation: hexagonShow 1.5s infinite alternate;
+  animation-delay: 1.2s;
+}
+.over-watch .hexagon-row .hexagon5 {
+  animation: hexagonShow 1.5s infinite alternate;
+  animation-delay: 1.5s;
+}
+.over-watch .hexagon-row .hexagon6 {
+  animation: hexagonShow 1.5s infinite alternate;
+  animation-delay: 1.8s;
+}
+.over-watch .hexagon-row .hexagon7 {
+  animation: hexagonShow 1.5s infinite alternate;
+  animation-delay: 2.1s;
+}
+@keyframes hexagonShow {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
